@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.outer{width: 590px;height: 470px;margin: 80px auto;position: relative;}
+		.outer ul li a img{width: 100%;height: 100%;}
+		.image li{position: absolute;list-style: none;top: 0;left: 0;}
+		.num {position: absolute;bottom: 3px;left: 50%;margin-left: -64px;list-style: none;padding-left: 0;}
+		.num li {display: inline-block;width: 12px;height: 12px;background-color: white;border-radius: 50%;text-align: center;line-height: 12px;margin-left: 4px;}
+		.btn {top: 50%;margin-top: -30px;position: absolute;width: 30px;height: 60px;background-color: lightgray;color: white;text-align: center;line-height: 60px;font-size: 30px;opacity: 0.8;display: none;}
+		.left{left: 0;}
+		.right{right: 0;}
+		.outer:hover .btn {display: block;}
+		.num .active {background-color: red;}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<ul class="image">
+			<li><a href=""><img src="img/1.jpg"></a></li>
+			<li><a href=""><img src="img/2.jpg"></a></li>
+			<li><a href=""><img src="img/3.jpg"></a></li>
+			<li><a href=""><img src="img/4.jpg"></a></li>
+			<li><a href=""><img src="img/5.jpg"></a></li>
+			<li><a href=""><img src="img/6.jpg"></a></li>
+			<li><a href=""><img src="img/7.jpg"></a></li>
+			<li><a href=""><img src="img/8.jpg"></a></li>
+		</ul>
+		<ul class="num"></ul>
+		<div class="left btn"><</div>
+		<div class="right btn">></div>
+	</div>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		var i = 0;
+		var img_num = $('.image li').length;//size();
+		//console.log(img_num) ---->>   8
+		for (var j = 0;j<img_num;j++){
+			$('.num').append('<li></li>')
+		}
+		$('.num li').eq(0).addClass('active');
+		$('.image li').eq(0).show().siblings().hide();//默认第一张图先显示
+//手动轮播
+		$('.num li').mouseover(function () {
+			i = $(this).index();
+			//console.log(index);
+			$(this).addClass('active').siblings().removeClass('active');
+			//$('.image li').eq(index).show().siblings().hide();
+			$('.image li').eq(i).stop().fadeIn(200).siblings().stop().fadeOut(200);
+		})
+//自动轮播
+		var c = setInterval(RUN_RIGHT,2000);
+		function RUN_RIGHT() {
+			if (i==img_num-1){
+				i=-1;
+			}
+				i++;
+				$('.num li').eq(i).addClass('active').siblings().removeClass('active');
+				$('.image li').eq(i).stop().fadeIn(200).siblings().stop().fadeOut(200);
+		}
+		function RUN_LEFT() {
+			if (i==0){
+				i=img_num;
+			}
+				i--;
+				$('.num li').eq(i).addClass('active').siblings().removeClass('active');
+				$('.image li').eq(i).stop().fadeIn(200).siblings().stop().fadeOut(200);
+		}
+		$('.outer').hover(function() {
+			/* Stuff to do when the mouse enters the element */
+			clearInterval(c);
+		}, function() {
+			/* Stuff to do when the mouse leaves the element */
+			c = setInterval(RUN_RIGHT,2000);
+		});
+//按钮
+		$('.right').click(RUN_RIGHT);
+		$('.left').click(RUN_LEFT);
+	</script>
+</body>
+</html>

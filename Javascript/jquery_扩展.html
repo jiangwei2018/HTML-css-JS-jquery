@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1></h1>
+	<p>666666</p>
+	<p>777777</p>
+	<p>888888</p>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$.extend({
+			Myprint:function () { //定义方法Myprint
+				console.log('hello');
+				$('h1').html('hello');
+			}
+		});
+		//$.Myprint(); //调用方法
+		$.fn.extend({
+			GetText : function () {
+				$.each($(this), function() {
+					console.log($(this).html());
+				});
+			}
+		})
+		$('p').GetText();
+	</script>
+</body>
+</html>

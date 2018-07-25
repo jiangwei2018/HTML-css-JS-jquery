@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div style="width: 100%;height: 200px;">
+		<button onclick="selectAll()">全选</button>
+		<button onclick="Cancel()">取消</button>
+		<button onclick="reverse()">反选</button>
+		<hr>
+		<table border="1px">
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>111</td>
+				<td>111</td>
+				<td>111</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>222</td>
+				<td>222</td>
+				<td>222</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>333</td>
+				<td>333</td>
+				<td>333</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>444</td>
+				<td>444</td>
+				<td>444</td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		function selectAll() {
+			$(':checkbox').each(function() {
+				$(this).prop('checked', true);
+			})
+		}
+		function Cancel() {
+			$(':checkbox').each(function() {
+				$(this).prop('checked', false);
+			})
+		}
+		function reverse() {
+			$(':checkbox').each(function() {
+				if ($(this).prop('checked')){
+					$(this).prop('checked',false);
+				}else{
+					$(this).prop('checked', true);
+				}
+			})
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.div1, .div2, .div3, .div4, .div5 { width: 500px; height: 150px; display: inline-block; }
+		.div1 { background-color: #896AAD; }
+		.div2 { background-color: green; }
+		.div3 { background-color: gray; }
+		.div3 img { height: 100%; }
+		.div4 { background-color: orange; }
+		.div5 { background-color: blue; }
+		.shade { position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: gray; opacity: 0.5; }
+		.model { width: 500px; height: 200px; background-color: bisque; position: absolute; top: 50%; left: 50%; margin-top: -100px; margin-left: -250px; }
+		.hide { display: none; }
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<button onclick="add()">add a p</button>
+	</div>
+	<div class="div2">
+		<button onclick="del()">del a p</button>
+	</div>
+	<div class="div3">
+
+		<button onclick="change()">change</button>
+		<p id="change" style="display: none;">hello world</p>
+	</div>
+	<div class="div4">
+		<button onclick="login()">login</button>
+	</div>
+	<div class="div5">
+		<button onclick="show()">show</button>
+	</div>
+	<div class="shade hide"></div>
+	<div class="model hide">
+		<button onclick="hide()">this hide</button>
+	</div>
+	<div style="width: 100%;height: 200px;">
+		<button onclick="selectAll()">全选</button>
+		<button onclick="Cancel()">取消</button>
+		<button onclick="reverse()">反选</button>
+		<hr>
+		<table border="1px">
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>111</td>
+				<td>111</td>
+				<td>111</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>222</td>
+				<td>222</td>
+				<td>222</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>333</td>
+				<td>333</td>
+				<td>333</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name=""></td>
+				<td>444</td>
+				<td>444</td>
+				<td>444</td>
+			</tr>
+		</table>
+	</div>
+	<div style="width: 100%;height: 200px;">
+		<select id="provinces">
+			<option value="">请选择省份</option>
+		</select>
+		<select id="cities">
+			<option value="">请选择城市</option>
+		</select>
+	</div>
+	<script type="text/javascript">
+		function add() {
+			var tag_p = document.createElement("p");
+			tag_p.innerHTML = "<h3>hello world</h3>";//字体会变大
+			tag_p.style.color = "red";
+			//tag_p.innerText = "<h3>hello world</h3>" //会添加<p><h3>hello world</h3></p>
+			var father = document.getElementsByClassName('div1')[0];
+			father.appendChild(tag_p);
+		}
+
+		function del() {
+			var father = document.getElementsByClassName("div1")[0];
+			var son = document.getElementsByTagName("p")[0];
+			father.removeChild(son);
+		}
+
+		function change() {
+			var father = document.getElementsByClassName('div3')[0];
+			var img = document.createElement("img");
+			img.src = 'https://www.baidu.com/img/bd_logo1.png';
+			var tag_p1 = document.getElementById('change');
+			// var tag_p1 = document.getElementsByTagName('p')[0];
+			father.replaceChild(img, tag_p1);
+
+		}
+
+		function login() {
+			var father = document.getElementsByClassName("div4")[0];
+			var tag_input1 = document.createElement("input");
+			tag_input1.setAttribute('type', 'text');
+			tag_input1.setAttribute('name', 'username');
+			tag_input1.setAttribute('placeholder', 'username');
+			var tag_input2 = document.createElement("input");
+			tag_input2.setAttribute('type', 'password');
+			tag_input2.setAttribute('name', 'password');
+			tag_input2.setAttribute('placeholder', 'password');
+			var tag_input3 = document.createElement("input");
+			tag_input3.setAttribute('type', 'submit');
+			tag_input3.setAttribute('value', 'login');
+			father.appendChild(tag_input1);
+			father.appendChild(tag_input2);
+			father.appendChild(tag_input3);
+
+		}
+		function show() {
+			var div_shade = document.getElementsByClassName("shade")[0];
+			var div_model = document.getElementsByClassName("model")[0];
+			div_shade.classList.remove("hide");
+			div_model.classList.remove("hide");
+
+		}
+		function hide() {
+			var div_shade = document.getElementsByClassName("shade")[0];
+			var div_model = document.getElementsByClassName("model")[0];
+			div_shade.classList.add("hide");
+			div_model.classList.add("hide");
+		}
+		function selectAll() {
+			var tag_inputs = document.getElementsByTagName("input");
+			for (var i = 0; i < tag_inputs.length; i++) {
+				var input = tag_inputs[i];
+				input.checked=true;
+			}
+		}
+		function Cancel() {
+			var tag_inputs = document.getElementsByTagName("input");
+			for (var i = 0; i < tag_inputs.length; i++) {
+				var input = tag_inputs[i];
+				input.checked=false;
+			}
+		}
+
+		function reverse() {
+			var tag_inputs = document.getElementsByTagName("input");
+			for (var i = 0; i < tag_inputs.length; i++) {
+				var input = tag_inputs[i];
+				input.checked =! input.checked; //两种方法
+				/*if (input.checked){
+					input.checked=false;
+				}else{
+					input.checked=true;
+				}*/
+
+			}
+		}
+
+
+	</script>
+	<script type="text/javascript">
+		/*a={name:'hello'};
+		b={'name':'hello'}; //道理一样
+		console.log(a.name);
+		console.log(b['name']);*/
+		data = {'吉林省':['长春市','吉林市','四平市','辽源市','通化市','白山市','松原市','白城市'],
+				'辽宁省':['沈阳','大连','鞍山','抚顺','本溪','丹东','锦州','营口'],
+				'黑龙江省':['哈尔滨市','齐齐哈尔市','牡丹江市','佳木斯市','七台河市','大庆市','黑河市','绥化市','伊春市','鹤岗市','双鸭山市','鸡西市'],
+				'东三省':['吉林省','辽宁省','黑龙江省']};
+		//console.log(data);
+		//console.log(typeof data);
+
+			var pro_ele = document.getElementById("provinces");
+			var city_ele = document.getElementById("cities");
+			for (var i in data) {
+			var tag_option_pro = document.createElement("option");
+			//option.setAttribute('value':'');
+			tag_option_pro.innerHTML = i;
+			pro_ele.appendChild(tag_option_pro);
+		}
+		pro_ele.onchange = function () {
+		//console.log(this.selectedIndex);
+		//console.log(this.options[this.selectedIndex].text);
+		var cities = data[this.options[this.selectedIndex].text];
+		//console.log(cities);
+		city_ele.options.length = 1;
+			for (var i = 0 ;i < cities.length; i++) {
+				var tag_option_city = document.createElement('option');
+				tag_option_city.innerHTML = cities[i];
+				//console.log(cities[i]);
+				city_ele.appendChild(tag_option_city);
+			}
+		}
+	</script>
+</body>
+</html>

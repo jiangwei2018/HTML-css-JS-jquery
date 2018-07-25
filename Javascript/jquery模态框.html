@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.shade { position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: gray; opacity: 0.5; }
+		.model { width: 500px; height: 200px; background-color: bisque; position: absolute; top: 50%; left: 50%; margin-top: -100px; margin-left: -250px; }
+		.hide { display: none; }
+	</style>
+</head>
+<body>
+	<div id='a'>
+		<input type="button" value='click' id="ID1" onclick=action1(this)>
+		<p>测试博客</p>
+		<button>add</button>
+	</div>
+	<div class="shade hide"></div>
+	<div class="model hide">
+		<input type="button" value='cancel' id="ID2" onclick=action2(this)>
+	</div>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		function action1(self){
+			$(self).parent().siblings().removeClass('hide');
+		}
+		function action2(self){
+			$(self).parent().addClass('hide').prev().addClass('hide');
+			//$(self).parent().addClass('hide');$(self).parent().prev().addClass('hide');
+			//$(self).parent().parent().children('.shade,.model').addClass('hide');
+		}
+		$('button').click(function() {
+			var $ele = $('<h1></h1>');
+			$ele.append('hello world');
+			$ele.css('color', 'red');
+
+//内部插入
+            //$('p').append($ele);
+            //$ele.appendTo($('p'));
+            //$('p').prepend($ele);
+            //$ele.prependTo($('p'));
+//外部插入
+//
+			//$('p').after($ele);
+			//$ele.insertAfter($('p'));
+			//$('p').before($ele);
+			//$ele.insertBefore($('p'));
+
+//替换
+            //$('p').replaceWith($ele);
+            //
+//删除
+//清空
+			//$('p').empty();
+			//$('p').remove();
+		});
+	</script>
+</body>
+</html>

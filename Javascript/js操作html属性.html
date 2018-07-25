@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button onclick="changehref()">change</button>
+	<a href="http://www.baidu.com">百度</a>
+	<script src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		function changehref() {
+			var a=$('a');
+			a.attr('href','http://47.94.214.46');
+			a.text('我的网站');
+			console.log(a.attr('href'));
+		}
+		console.log($('a').attr('href'));
+		console.log();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+	</div>
+	<button>add</button>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		/*$('ul li').click(function() {
+			alert(1111)
+		});*/
+		//值针对本来ul里面有的li起作用，后加的不起作用
+		/*$('ul li').bind('click', function(event) {
+			alert(1111)
+		});*/
+		//针对ul下所有的li都起作用
+		$('ul').on('click', 'li', function(event) { //on或者bind都一样的效果
+			alert(1111)
+		});
+		$('button').click(function() {
+			var $ele = $('<li>');
+			var len = $('ul li').length;
+			$ele.html((len+1)*1111);
+			$('ul').append($ele);
+		});
+	</script>
+</body>
+</html>

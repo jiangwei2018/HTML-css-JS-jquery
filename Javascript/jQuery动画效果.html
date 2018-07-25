@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function($) {
+			/*$('#slideDown').click(function() {
+				$('#content').slideDown(1000);
+			});*/
+			$('#slideDown').click(function() {
+				$('#content').slideDown(1000,function () {
+					alert(11111);
+				});
+			});
+			$('#slideUp').click(function() {
+				$('#content').slideUp(1000);
+			});
+			$('#slideToggle').click(function() {
+				$('#content').slideToggle(1000);
+			});
+
+			$('#in').click(function() {
+				$('#id1').fadeIn(1000);
+			});
+			$('#out').click(function() {
+				$('#id1').fadeOut(1000);
+			});
+			$('#toggle').click(function() {
+				$('#id1').fadeToggle(1000);
+			});
+			$('#fadeto').click(function() {
+				$('#id1').fadeTo(1000,0.4);
+			});
+		});
+	</script>
+	<style type="text/css">
+		* {
+			margin: 0 auto;
+			padding: 0 auto;
+		}
+		.div1,.div2,.div3{
+			width: 100%;
+			height: 300px;
+		}
+		.nav {
+			width: 100%;
+			height: 80px;
+			background-color: #CAD2D6;
+		}
+		.search {
+			position: absolute;
+			width: 100%;
+			height: 80px;
+			background-color: #463737;
+		}
+		.shade {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: gray;
+			opacity: 0.4;
+		}
+		.nav img {
+			margin-left: 60%;
+			margin-top: 10px;
+		}
+		.search img {
+			margin-left: 60%;
+			margin-top: 10px;
+		}
+		.hide{
+			display: none;
+		}
+		#content {
+			text-align: center;
+			background-color: lightblue;
+			border: solid 1px red;
+			padding: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<div class="nav">
+			<img src="search.png" onclick="show()">
+		</div>
+		<div class="shade hide"></div>
+		<div class="search hide">
+			<img src="Cancel.png" onclick="hideSearch()">
+		</div>
+	</div>
+	<div class="div2">
+		<button id="slideDown">出现</button>
+		<button id="slideUp">隐藏</button>
+		<button id="slideToggle">转换状态</button>
+		<div id="content">hello world</div>
+	</div>
+	<div class="div3">
+		<button id="in">出现</button>
+		<button id="out">隐藏</button>
+		<button id="toggle">转换状态</button>
+		<button id="fadeto">fadeto</button>
+		<div id="id1" style="width: 400px;height: 80px;background-color: blueviolet;"></div>
+	</div>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		function show() {
+			$('.nav').hide();
+			$('.shade').show();
+			//$('.search').show(500);
+			$('.search').slideDown(300);
+		}
+		/*$('.nav button').click(function() {
+
+		});*/
+		function hideSearch() {
+			$('.shade').hide();
+			$('.search').hide();
+			//$('.search').fadeOut(300);
+			//$('.nav').show(500);
+			$('.nav').show();
+		}
+		/*$('.search button').click(function() {
+
+		});*/
+	</script>
+</body>
+</html>
